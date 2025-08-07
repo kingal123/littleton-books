@@ -23,12 +23,12 @@ export const Sidebar = forwardRef(({ collapsed }, ref) => {
             <div className="flex gap-x-3 p-3">
                 <img
                     src={logoLight}
-                    alt="Logoipsum"
+                    alt="Littleton Books"
                     className="dark:hidden"
                 />
                 <img
                     src={logoDark}
-                    alt="Logoipsum"
+                    alt="Littleton Books"
                     className="hidden dark:block"
                 />
                 {!collapsed && <p className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50">Logoipsum</p>}
