@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDULo_RtqNvUR0JcqysvyXXJLQAzOgf-0A",
-  authDomain: "littleton-books.firebaseapp.com",
-  projectId: "littleton-books",
-  storageBucket: "littleton-books.firebasestorage.ap",
-  messagingSenderId: "955332241960",
-  appId: "1:955332241960:web:dcf4fc3e05fa1deff6e31d"
+  apiKey: "AIzaSyBHZhUMbphZstYTWx2TaFwWOt58F2lAIRI",
+  authDomain: "littleton-books-85957.firebaseapp.com",
+  projectId: "littleton-books-85957",
+  storageBucket: "littleton-books-85957.firebasestorage.app",
+  messagingSenderId: "338220011770",
+  appId: "1:338220011770:web:724b98080fcc7cdddd7943"
 };
 
 const app = initializeApp(firebaseConfig);

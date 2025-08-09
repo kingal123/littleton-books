@@ -64,16 +64,7 @@ const Signup = () => {
             Create
           </button>
 
-          {/* 👇 Login link */}
-          <p className="text-sm text-center text-slate-600 dark:text-slate-300 mt-4">
-            Already have an account?{" "}
-            <a
-              href="/login"
-              className="text-blue-600 hover:underline dark:text-blue-400"
-            >
-              Login
-            </a>
-          </p>
+          
         </form>
       </div>
     </div>
