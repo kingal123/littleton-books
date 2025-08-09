@@ -25,7 +25,7 @@ export const navbarLinks = [
         ],
     },
     {
-        title: "Customers",
+        title: "Orders",
         links: [
             {
                 label: "Customers",
