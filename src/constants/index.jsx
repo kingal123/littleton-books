@@ -12,48 +12,38 @@ export const navbarLinks = [
                 icon: Home,
                 path: "/",
             },
-            {
-                label: "Analytics",
-                icon: ChartColumn,
-                path: "/analytics",
-            },
-            {
-                label: "Reports",
-                icon: NotepadText,
-                path: "/reports",
-            },
         ],
     },
     {
         title: "Orders",
         links: [
             {
-                label: "Customers",
+                label: "Orders",
                 icon: Users,
-                path: "/customers",
+                path: "/orders",
             },
             {
-                label: "New customer",
+                label: "New order",
                 icon: UserPlus,
-                path: "/new-customer",
+                path: "/new-order",
             },
             {
-                label: "Verified customers",
+                label: "Order History",
                 icon: UserCheck,
-                path: "/verified-customers",
+                path: "/order-history",
             },
         ],
     },
     {
-        title: "Products",
+        title: "Books",
         links: [
             {
-                label: "Products",
+                label: "Books",
                 icon: Package,
-                path: "/products",
+                path: "/books",
             },
             {
-                label: "New product",
+                label: "New Book",
                 icon: PackagePlus,
                 path: "/new-product",
             },
@@ -79,51 +69,51 @@ export const navbarLinks = [
 export const overviewData = [
     {
         name: "Jan",
-        total: 1500,
+        total: 1,
     },
     {
         name: "Feb",
-        total: 2000,
+        total: 0,
     },
     {
         name: "Mar",
-        total: 1000,
+        total: 0,
     },
     {
         name: "Apr",
-        total: 5000,
+        total: 10,
     },
     {
         name: "May",
-        total: 2000,
+        total: 4,
     },
     {
         name: "Jun",
-        total: 5900,
+        total: 9,
     },
     {
         name: "Jul",
-        total: 2000,
+        total: 8,
     },
     {
         name: "Aug",
-        total: 5500,
+        total: 5,
     },
     {
         name: "Sep",
-        total: 2000,
+        total: 10,
     },
     {
         name: "Oct",
-        total: 4000,
+        total: 7,
     },
     {
         name: "Nov",
-        total: 1500,
+        total: 3,
     },
     {
         name: "Dec",
-        total: 2500,
+        total: 2,
     },
 ];
 

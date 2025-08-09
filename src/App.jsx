@@ -20,28 +20,24 @@ function App() {
                     element: <h1 className="title">Analytics</h1>,
                 },
                 {
-                    path: "reports",
-                    element: <h1 className="title">Reports</h1>,
+                    path: "orders",
+                    element: <h1 className="title">Orders</h1>,
                 },
                 {
-                    path: "customers",
-                    element: <h1 className="title">Customers</h1>,
+                    path: "new-order",
+                    element: <h1 className="title">New Order</h1>,
                 },
                 {
-                    path: "new-customer",
-                    element: <h1 className="title">New Customer</h1>,
+                    path: "order-history",
+                    element: <h1 className="title">Order History</h1>,
                 },
                 {
-                    path: "verified-customers",
-                    element: <h1 className="title">Verified Customers</h1>,
-                },
-                {
-                    path: "products",
-                    element: <h1 className="title">Products</h1>,
+                    path: "books",
+                    element: <h1 className="title">Books</h1>,
                 },
                 {
                     path: "new-product",
-                    element: <h1 className="title">New Product</h1>,
+                    element: <h1 className="title">New Book</h1>,
                 },
                 {
                     path: "inventory",
