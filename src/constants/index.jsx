@@ -55,12 +55,12 @@ export const navbarLinks = [
         ],
     },
     {
-        title: "Settings",
+        title: "User Admin",
         links: [
             {
-                label: "Settings",
+                label: "Add User",
                 icon: Settings,
-                path: "/settings",
+                path: "/signup",
             },
         ],
     },
