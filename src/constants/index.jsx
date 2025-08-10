@@ -1,4 +1,4 @@
-import { ChartColumn, Home, NotepadText, Package, PackagePlus, Settings, ShoppingBag, UserCheck, UserPlus, Users } from "lucide-react";
+import { ChartColumn, Home, NotepadText, Package, PackagePlus, History, Settings, UserCheck, UserPlus, Users, Book, Library, LibraryBig, BookCheck, BookPlus, } from "lucide-react";
 
 import ProfileImage from "@/assets/profile-image.jpg";
 import ProductImage from "@/assets/product-image.jpg";
@@ -19,17 +19,17 @@ export const navbarLinks = [
         links: [
             {
                 label: "Orders",
-                icon: Users,
+                icon: Package,
                 path: "/orders",
             },
             {
-                label: "New order",
-                icon: UserPlus,
+                label: "New Order",
+                icon: PackagePlus,
                 path: "/new-order",
             },
             {
                 label: "Order History",
-                icon: UserCheck,
+                icon: History,
                 path: "/order-history",
             },
         ],
@@ -39,17 +39,17 @@ export const navbarLinks = [
         links: [
             {
                 label: "Books",
-                icon: Package,
+                icon: Book,
                 path: "/books",
             },
             {
-                label: "New Book",
-                icon: PackagePlus,
+                label: "Add Book",
+                icon: BookPlus,
                 path: "/new-product",
             },
             {
                 label: "Inventory",
-                icon: ShoppingBag,
+                icon: LibraryBig,
                 path: "/inventory",
             },
         ],
@@ -59,7 +59,7 @@ export const navbarLinks = [
         links: [
             {
                 label: "Add User",
-                icon: Settings,
+                icon: UserPlus,
                 path: "/signup",
             },
         ],

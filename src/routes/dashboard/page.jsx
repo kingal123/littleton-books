@@ -8,7 +8,9 @@ import { Footer } from "@/layouts/footer";
 
 import { CreditCard, DollarSign, Package, PencilLine, Star, Trash, TrendingUp, Users } from "lucide-react";
 
-const DashboardPage = () => {
+import SupabaseTable from "@/components/SupabaseTable";
+
+export default function DashboardPage() {
     const { theme } = useTheme();
 
     return (
@@ -222,9 +224,9 @@ const DashboardPage = () => {
                     </div>
                 </div>
             </div>
+            <SupabaseTable />
             <Footer />
+            
         </div>
     );
 };
-
-export default DashboardPage;

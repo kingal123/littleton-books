@@ -5,8 +5,9 @@ import Layout from "@/routes/layout";
 import ProtectedRoute from "@/routes/ProtectedRoute"; // ✅ Import
 import DashboardPage from "@/routes/dashboard/page";
 import ReportsPage from "@/routes/reports/page";
-import Signup from "@/pages/Signup";
-import Login from "@/pages/Login";
+import TablePage from "@/pages/Table"; // ✅ Import TablePage
+import Signup from "@/pages/Signup";    // ✅ Import Signup
+import Login from "@/pages/Login";  // ✅ Import Login
 
 function App() {
     const router = createBrowserRouter([
@@ -35,8 +36,9 @@ function App() {
                 { path: "new-order", element: <h1 className="title">New Order</h1> },
                 { path: "order-history", element: <h1 className="title">Order History</h1> },
                 { path: "books", element: <h1 className="title">Books</h1> },
-                { path: "new-product", element: <h1 className="title">New Book</h1> },
+                { path: "new-product", element: <h1 className="title">Add Book</h1> },
                 { path: "inventory", element: <h1 className="title">Inventory</h1> },
+                { path: "table", element: <TablePage /> }, // ✅ Use TablePage
                 {
                     path: "reports",
                     element: <ReportsPage />,
