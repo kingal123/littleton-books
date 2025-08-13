@@ -22,10 +22,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 transition-colors">
       <div className="w-full max-w-md bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-300 dark:border-slate-700">
-        <h2 className="text-2xl font-bold text-center text-slate-900 dark:text-slate-50 mb-6">
-          Create New Account
-        </h2>
-        {error && (
+               {error && (
           <p className="text-sm text-red-500 mb-4 text-center">{error}</p>
         )}
         <form onSubmit={handleSignup} className="space-y-4">

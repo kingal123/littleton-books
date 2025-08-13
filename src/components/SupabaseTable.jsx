@@ -115,7 +115,7 @@ export default function SupabaseTable({
         ))}
         <button
           type="submit"
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
           disabled={inserting}
         >
           {inserting ? "Adding..." : "Add Book"}

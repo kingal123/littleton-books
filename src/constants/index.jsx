@@ -60,7 +60,7 @@ export const navbarLinks = [
             {
                 label: "Add User",
                 icon: UserPlus,
-                path: "/signup",
+                path: "/user",
             },
         ],
     },
