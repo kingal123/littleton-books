@@ -1,15 +1,57 @@
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useEffect, useState } from "react";
 
+import SupabaseTable from "@/components/SupabaseTable";
 import { useTheme } from "@/hooks/use-theme";
+import { supabase } from "@/supabase/client";
 
 import { overviewData, recentSalesData, topProducts } from "@/constants";
 
 import { Footer } from "@/layouts/footer";
 
-import { CreditCard, DollarSign, Package, PencilLine, Star, Trash, TrendingUp, Users } from "lucide-react";
+import { CreditCard, Bus, Package, PencilLine, Star, Trash, TrendingUp, Users, LibraryBig } from "lucide-react";
 
 export default function DashboardPage() {
     const { theme } = useTheme();
+    const [bookCount, setBookCount] = useState(null);
+    const [onBusCount, setOnBusCount] = useState(null);
+    const [newCount, setNewCount] = useState(null);
+    const [recentBooks, setRecentBooks] = useState([]);
+
+    useEffect(() => {
+        async function fetchBookCount() {
+            const { count, error } = await supabase
+                .from("book_list")
+                .select("*", { count: "exact", head: true });
+            if (!error) setBookCount(count);
+        }
+        async function fetchOnBusCount() {
+            const { count, error } = await supabase
+                .from("book_list")
+                .select("*", { count: "exact", head: true })
+                .eq("status", "On Bus");
+            if (!error) setOnBusCount(count);
+        }
+        async function fetchNewCount() {
+            const { count, error } = await supabase
+                .from("book_list")
+                .select("*", { count: "exact", head: true })
+                .eq("status", "New");
+            if (!error) setNewCount(count);
+        }
+        async function fetchRecentBooks() {
+            const { data, error } = await supabase
+                .from("book_list")
+                .select("*")
+                .order("created_at", { ascending: false })
+                .limit(5);
+            if (!error && data) setRecentBooks(data);
+        }
+        fetchBookCount();
+        fetchOnBusCount();
+        fetchNewCount();
+        fetchRecentBooks();
+    }, []);
 
     return (
         <div className="flex flex-col gap-y-4">
@@ -18,12 +60,14 @@ export default function DashboardPage() {
                 <div className="card">
                     <div className="card-header">
                         <div className="w-fit rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
-                            <Package size={26} />
+                            <LibraryBig size={26} />
                         </div>
                         <p className="card-title">Total Books</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">11</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">
+                            {bookCount !== null ? bookCount : "…"}
+                        </p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
                             <TrendingUp size={18} />
                             2%
@@ -32,13 +76,33 @@ export default function DashboardPage() {
                 </div>
                 <div className="card">
                     <div className="card-header">
-                        <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
-                            <DollarSign size={26} />
+                        <div className="w-fit rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
+                            <Bus size={26} />
                         </div>
-                        <p className="card-title">Total Customers</p>
+                        <p className="card-title">Books On Bus</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">15,400k</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">
+                            {onBusCount !== null ? onBusCount : "…"}
+                        </p>
+                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
+                            <TrendingUp size={18} />
+                            {/* You can update this percentage as needed */}
+                            5%
+                        </span>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="card-header">
+                        <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
+                            <Star size={26} />
+                        </div>
+                        <p className="card-title">New Books</p>
+                    </div>
+                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">
+                            {newCount !== null ? newCount : "…"}
+                        </p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
                             <TrendingUp size={18} />
                             15%
@@ -50,7 +114,7 @@ export default function DashboardPage() {
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <CreditCard size={26} />
                         </div>
-                        <p className="card-title">Sales</p>
+                        <p className="card-title">Awaiting Dedication</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">12,340</p>
@@ -102,7 +166,7 @@ export default function DashboardPage() {
                                 </defs>
                                 <Tooltip
                                     cursor={false}
-                                    formatter={(value) => `$${value}`}
+                                    formatter={(value) => `${value}`}
                                 />
 
                                 <XAxis
@@ -115,7 +179,7 @@ export default function DashboardPage() {
                                     dataKey="total"
                                     strokeWidth={0}
                                     stroke={theme === "light" ? "#475569" : "#94a3b8"}
-                                    tickFormatter={(value) => `$${value}`}
+                                    tickFormatter={(value) => `${value}`}
                                     tickMargin={6}
                                 />
 
@@ -135,25 +199,32 @@ export default function DashboardPage() {
                         <p className="card-title">Recent Orders</p>
                     </div>
                     <div className="card-body h-[300px] overflow-auto p-0">
-                        {recentSalesData.map((sale) => (
-                            <div
-                                key={sale.id}
-                                className="flex items-center justify-between gap-x-4 py-2 pr-2"
-                            >
-                                <div className="flex items-center gap-x-4">
-                                    <img
-                                        src={sale.image}
-                                        alt={sale.name}
-                                        className="size-10 flex-shrink-0 rounded-full object-cover"
-                                    />
-                                    <div className="flex flex-col gap-y-2">
-                                        <p className="font-medium text-slate-900 dark:text-slate-50">{sale.name}</p>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400">{sale.email}</p>
-                                    </div>
-                                </div>
-                                <p className="font-medium text-slate-900 dark:text-slate-50">${sale.total}</p>
-                            </div>
-                        ))}
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th className="text-left">Book</th>
+                                    <th className="text-left">Status</th>
+                                    <th className="text-left">Category</th>
+                                    <th className="text-left">Created</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recentBooks.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={4} className="text-center">No recent orders</td>
+                                    </tr>
+                                ) : (
+                                    recentBooks.map((book) => (
+                                        <tr key={book.id}>
+                                            <td className="text-left">{book.book_name}</td>
+                                            <td className="text-left">{book.status}</td>
+                                            <td className="text-left">{book.category}</td>
+                                            <td className="text-left">{book.created_at ? new Date(book.created_at).toLocaleString() : ""}</td>
+                                        </tr>
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
