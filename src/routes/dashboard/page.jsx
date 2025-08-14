@@ -196,7 +196,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="card col-span-1 md:col-span-2 lg:col-span-3">
                     <div className="card-header">
-                        <p className="card-title">Recent Orders</p>
+                        <p className="card-title">Category Summary</p>
                     </div>
                     <div className="card-body h-[300px] overflow-auto p-0">
                         <table className="table">
@@ -230,7 +230,7 @@ export default function DashboardPage() {
             </div>
             <div className="card">
                 <div className="card-header">
-                    <p className="card-title">Top Orders</p>
+                    <p className="card-title">Recent Orders 2</p>
                 </div>
                 <div className="card-body p-0">
                     <div className="relative h-[500px] w-full flex-shrink-0 overflow-auto rounded-none [scrollbar-width:_thin]">
@@ -238,8 +238,8 @@ export default function DashboardPage() {
                             <thead className="table-header">
                                 <tr className="table-row">
                                     <th className="table-head">#</th>
-                                    <th className="table-head">Product</th>
-                                    <th className="table-head">Price</th>
+                                    <th className="table-head">Book</th>
+                                    <th className="table-head">Category</th>
                                     <th className="table-head">Status</th>
                                     <th className="table-head">Rating</th>
                                     <th className="table-head">Actions</th>

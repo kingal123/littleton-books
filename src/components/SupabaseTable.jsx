@@ -109,6 +109,7 @@ export default function SupabaseTable({
                 value={form[col]}
                 onChange={handleChange}
                 required
+                placeholder={col === "book_name" ? "Book Name" : ""}
               />
             )}
           </div>
@@ -130,7 +131,12 @@ export default function SupabaseTable({
           <thead>
             <tr>
               {columns.map((col) => (
-                <th key={col}>{columnLabels[col] || col}</th>
+                <th
+                  key={col}
+                  className="text-left"
+                >
+                  {columnLabels[col] || col}
+                </th>
               ))}
             </tr>
           </thead>
