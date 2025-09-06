@@ -5,11 +5,16 @@ import SupabaseTable from "@/components/SupabaseTable";
 import { useTheme } from "@/hooks/use-theme";
 import { supabase } from "@/supabase/client";
 
-import { overviewData, recentSalesData, topProducts } from "@/constants";
+import { recentSalesData, topProducts } from "@/constants";
 
 import { Footer } from "@/layouts/footer";
 
 import { CreditCard, Bus, Package, PencilLine, Star, Trash, TrendingUp, Users, LibraryBig } from "lucide-react";
+
+const MONTHS = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
 
 export default function DashboardPage() {
     const { theme } = useTheme();
@@ -17,6 +22,7 @@ export default function DashboardPage() {
     const [onBusCount, setOnBusCount] = useState(null);
     const [newCount, setNewCount] = useState(null);
     const [recentBooks, setRecentBooks] = useState([]);
+    const [overviewData, setOverviewData] = useState([]);
 
     useEffect(() => {
         async function fetchBookCount() {
@@ -47,10 +53,34 @@ export default function DashboardPage() {
                 .limit(5);
             if (!error && data) setRecentBooks(data);
         }
+        async function fetchMonthlyBookCounts() {
+            const { data, error } = await supabase
+                .from("book_list")
+                .select("id, created_at");
+            if (error || !data) {
+                setOverviewData([]);
+                return;
+            }
+            // Count books per month
+            const counts = Array(12).fill(0);
+            data.forEach(book => {
+                if (book.created_at) {
+                    const month = new Date(book.created_at).getMonth();
+                    counts[month]++;
+                }
+            });
+            setOverviewData(
+                MONTHS.map((name, i) => ({
+                    name,
+                    total: counts[i],
+                }))
+            );
+        }
         fetchBookCount();
         fetchOnBusCount();
         fetchNewCount();
         fetchRecentBooks();
+        fetchMonthlyBookCounts();
     }, []);
 
     return (

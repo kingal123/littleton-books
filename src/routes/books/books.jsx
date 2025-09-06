@@ -3,7 +3,7 @@ import SupabaseTable from "@/components/SupabaseTable";
 export default function BooksPage() {
   return (
     <div>
-      <h1 className="title">Table</h1>
+      <h1 className="title">Books</h1>
 
       <SupabaseTable
         table="book_list"
