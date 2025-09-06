@@ -5,7 +5,7 @@ import ProductImage from "@/assets/product-image.jpg";
 
 export const navbarLinks = [
     {
-        title: "Dashboard",
+        title: "Home",
         links: [
             {
                 label: "Dashboard",
@@ -55,7 +55,7 @@ export const navbarLinks = [
         ],
     },
     {
-        title: "User Admin",
+        title: "Admin",
         links: [
             {
                 label: "Add User",
