@@ -45,7 +45,7 @@ export const navbarLinks = [
             {
                 label: "Add Book",
                 icon: BookPlus,
-                path: "/new-product",
+                path: "/add-book",
             },
             {
                 label: "Inventory",

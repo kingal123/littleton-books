@@ -10,6 +10,7 @@ import TablePage from "@/pages/Table"; // ✅ Import TablePage
 import Signup from "@/pages/Signup";    // ✅ Import Signup
 import UserPage from "@/routes/user/page"; // ✅ Import UserPage
 import Login from "@/pages/Login";  // ✅ Import Login
+import InventoryPage from "./routes/books/inventory";
 
 function App() {
     const router = createBrowserRouter([
@@ -38,8 +39,8 @@ function App() {
                 { path: "new-order", element: <h1 className="title">New Order</h1> },
                 { path: "order-history", element: <h1 className="title">Order History</h1> },
                 { path: "books", element: <BooksPage/> }, // ✅ Use BooksPage
-                { path: "new-product", element: <h1 className="title">Add Book</h1> },
-                { path: "inventory", element: <h1 className="title">Inventory</h1> },
+                { path: "add-book", element: <h1 className="title">Add Book</h1> },
+                { path: "inventory", element: <InventoryPage /> },
                 { path: "table", element: <TablePage /> }, // ✅ Use TablePage
                 { path: "reports", element: <ReportsPage /> },
                 { path: "user", element: <UserPage /> },

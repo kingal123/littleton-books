@@ -9,7 +9,7 @@ import { recentSalesData, topProducts } from "@/constants";
 
 import { Footer } from "@/layouts/footer";
 
-import { CreditCard, Bus, Package, PencilLine, Star, Trash, TrendingUp, Users, LibraryBig } from "lucide-react";
+import { CreditCard, Bus, PencilLine, Star, Trash, TrendingUp, Users, LibraryBig, Check, X as XIcon } from "lucide-react";
 
 const MONTHS = [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -23,6 +23,10 @@ export default function DashboardPage() {
     const [newCount, setNewCount] = useState(null);
     const [recentBooks, setRecentBooks] = useState([]);
     const [overviewData, setOverviewData] = useState([]);
+    const [preSchoolCount, setPreSchoolCount] = useState(null);
+    const [receptionCount, setReceptionCount] = useState(null);
+    const [year1Count, setYear1Count] = useState(null);
+    const [year2Count, setYear2Count] = useState(null);
 
     useEffect(() => {
         async function fetchBookCount() {
@@ -76,12 +80,59 @@ export default function DashboardPage() {
                 }))
             );
         }
+        async function fetchPreSchoolCount() {
+            const { count, error } = await supabase
+                .from("pre_school")
+                .select("*", { count: "exact", head: true });
+            if (!error) setPreSchoolCount(count);
+        }
+        async function fetchReceptionCount() {
+            const { count, error } = await supabase
+                .from("reception")
+                .select("*", { count: "exact", head: true });
+            if (!error) setReceptionCount(count);
+        }
+        async function fetchYear1Count() {
+            const { count, error } = await supabase
+                .from("year_1")
+                .select("*", { count: "exact", head: true });
+            if (!error) setYear1Count(count);
+        }
+        async function fetchYear2Count() {
+            const { count, error } = await supabase
+                .from("year_2")
+                .select("*", { count: "exact", head: true });
+            if (!error) setYear2Count(count);
+        }
         fetchBookCount();
         fetchOnBusCount();
         fetchNewCount();
         fetchRecentBooks();
         fetchMonthlyBookCounts();
+        fetchPreSchoolCount();
+        fetchReceptionCount();
+        fetchYear1Count();
+        fetchYear2Count();
     }, []);
+
+    // Check if all counts are exactly 5
+    const allFive =
+        preSchoolCount === 5 &&
+        receptionCount === 5 &&
+        year1Count === 5 &&
+        year2Count === 5;
+
+    // Helper for icon
+    const TableStatus = ({ count, label }) => (
+        <span className="flex items-center gap-2">
+            <span className="font-bold">{label}</span>
+            {count === 5 ? (
+                <Check className="text-green-600" size={20} />
+            ) : (
+                <XIcon className="text-red-600" size={20} />
+            )}
+        </span>
+    );
 
     return (
         <div className="flex flex-col gap-y-4">
@@ -117,7 +168,6 @@ export default function DashboardPage() {
                         </p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
                             <TrendingUp size={18} />
-                            {/* You can update this percentage as needed */}
                             5%
                         </span>
                     </div>
@@ -144,14 +194,28 @@ export default function DashboardPage() {
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <CreditCard size={26} />
                         </div>
-                        <p className="card-title">Awaiting Dedication</p>
+                        <p className="card-title">Book Float</p>
                     </div>
-                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">12,340</p>
-                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
-                            <TrendingUp size={18} />
-                            19%
-                        </span>
+                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 flex flex-col gap-2">
+                        {/* Table status list, two per line, evenly aligned */}
+                        <div className="mt-2 flex flex-col gap-2">
+                            <div className="flex justify-between gap-8">
+                                <div className="flex-1 flex justify-center">
+                                    <TableStatus count={preSchoolCount} label="Pre-School" />
+                                </div>
+                                <div className="flex-1 flex justify-center">
+                                    <TableStatus count={receptionCount} label="Reception" />
+                                </div>
+                            </div>
+                            <div className="flex justify-between gap-8">
+                                <div className="flex-1 flex justify-center">
+                                    <TableStatus count={year1Count} label="Year 1" />
+                                </div>
+                                <div className="flex-1 flex justify-center">
+                                    <TableStatus count={year2Count} label="Year 2" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
