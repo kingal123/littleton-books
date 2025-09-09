@@ -11,6 +11,7 @@ import Signup from "@/pages/Signup";    // ✅ Import Signup
 import UserPage from "@/routes/user/page"; // ✅ Import UserPage
 import Login from "@/pages/Login";  // ✅ Import Login
 import InventoryPage from "./routes/books/inventory";
+import OrdersPage from "./routes/orders/orders";    // ✅ Import OrdersPage
 
 function App() {
     const router = createBrowserRouter([
@@ -35,7 +36,7 @@ function App() {
             children: [
                 { index: true, element: <DashboardPage /> },
                 { path: "analytics", element: <h1 className="title">Analytics</h1> },
-                { path: "orders", element: <h1 className="title">Orders</h1> },
+                { path: "orders", element: <OrdersPage /> },
                 { path: "new-order", element: <h1 className="title">New Order</h1> },
                 { path: "order-history", element: <h1 className="title">Order History</h1> },
                 { path: "books", element: <BooksPage/> }, // ✅ Use BooksPage

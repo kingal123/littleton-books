@@ -56,7 +56,7 @@ export default function BooksPage() {
             <table className="table">
               <thead className="table-header">
                 <tr className="table-row">
-                  <th className="table-head">Book</th>
+                  <th className="table-head">Book Name</th>
                   <th className="table-head">Category</th>
                   <th className="table-head">Status</th>
                   <th className="table-head">Created</th>
