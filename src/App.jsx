@@ -11,6 +11,7 @@ import Signup from "@/pages/Signup";    // ✅ Import Signup
 import UserPage from "@/routes/user/page"; // ✅ Import UserPage
 import Login from "@/pages/Login";  // ✅ Import Login
 import InventoryPage from "./routes/books/inventory";
+import NewOrderPage from "@/routes/orders/new-order"; // ✅ Import NewOrderPage
 import OrdersPage from "./routes/orders/orders";    // ✅ Import OrdersPage
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
                 { index: true, element: <DashboardPage /> },
                 { path: "analytics", element: <h1 className="title">Analytics</h1> },
                 { path: "orders", element: <OrdersPage /> },
-                { path: "new-order", element: <h1 className="title">New Order</h1> },
+                { path: "new-order", element: <NewOrderPage /> },
                 { path: "order-history", element: <h1 className="title">Order History</h1> },
                 { path: "books", element: <BooksPage/> }, // ✅ Use BooksPage
                 { path: "add-book", element: <h1 className="title">Add Book</h1> },
