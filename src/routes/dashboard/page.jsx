@@ -194,25 +194,33 @@ export default function DashboardPage() {
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <CreditCard size={26} />
                         </div>
-                        <p className="card-title">Book Float</p>
+                        <p className="card-title text-slate-900 dark:text-slate-100">Book Float</p>
                     </div>
-                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 flex flex-col gap-2">
+                    <div className="card-body bg-slate-100 dark:bg-slate-950 flex flex-col gap-2">
                         {/* Table status list, two per line, evenly aligned */}
                         <div className="mt-2 flex flex-col gap-2">
                             <div className="flex justify-between gap-8">
                                 <div className="flex-1 flex justify-center">
-                                    <TableStatus count={preSchoolCount} label="Pre-School" />
+                                    <TableStatus count={preSchoolCount} label={
+                                        <span className="text-slate-900 dark:text-slate-100 font-bold">Pre-School</span>
+                                    } />
                                 </div>
                                 <div className="flex-1 flex justify-center">
-                                    <TableStatus count={receptionCount} label="Reception" />
+                                    <TableStatus count={receptionCount} label={
+                                        <span className="text-slate-900 dark:text-slate-100 font-bold">Reception</span>
+                                    } />
                                 </div>
                             </div>
                             <div className="flex justify-between gap-8">
                                 <div className="flex-1 flex justify-center">
-                                    <TableStatus count={year1Count} label="Year 1" />
+                                    <TableStatus count={year1Count} label={
+                                        <span className="text-slate-900 dark:text-slate-100 font-bold">Year 1</span>
+                                    } />
                                 </div>
                                 <div className="flex-1 flex justify-center">
-                                    <TableStatus count={year2Count} label="Year 2" />
+                                    <TableStatus count={year2Count} label={
+                                        <span className="text-slate-900 dark:text-slate-100 font-bold">Year 2</span>
+                                    } />
                                 </div>
                             </div>
                         </div>
