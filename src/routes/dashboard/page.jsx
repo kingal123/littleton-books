@@ -137,8 +137,9 @@ export default function DashboardPage() {
     return (
         <div className="flex flex-col gap-y-4">
             <h1 className="title">Dashboard</h1>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <div className="card">
+            {/* Change grid-cols-1 to grid-cols-2 for mobile */}
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="card p-2 sm:p-4">
                     <div className="card-header">
                         <div className="w-fit rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <LibraryBig size={26} />
@@ -155,7 +156,7 @@ export default function DashboardPage() {
                         </span>
                     </div>
                 </div>
-                <div className="card">
+                <div className="card p-2 sm:p-4">
                     <div className="card-header">
                         <div className="w-fit rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <Bus size={26} />
@@ -172,7 +173,7 @@ export default function DashboardPage() {
                         </span>
                     </div>
                 </div>
-                <div className="card">
+                <div className="card p-2 sm:p-4">
                     <div className="card-header">
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <Star size={26} />
@@ -189,7 +190,7 @@ export default function DashboardPage() {
                         </span>
                     </div>
                 </div>
-                <div className="card">
+                <div className="card p-2 sm:p-4">
                     <div className="card-header">
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <CreditCard size={26} />
@@ -390,3 +391,7 @@ export default function DashboardPage() {
         </div>
     );
 };
+
+// Add this to your global CSS (e.g. index.css or tailwind.css) if not already present:
+// .card { transition: padding 0.2s; }
+// @media (max-width: 640px) { .card { padding: 0.5rem !important; } }
