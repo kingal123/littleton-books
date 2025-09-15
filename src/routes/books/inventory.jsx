@@ -163,13 +163,13 @@ export default function BooksPage() {
       {showAdd && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 min-w-[320px]">
-            <h2 className="text-lg font-bold mb-4">Add Book</h2>
+            <h2 className="text-lg font-bold mb-4 text-slate-900 dark:text-slate-100">Add Book</h2>
             <form onSubmit={handleAddBook} className="flex flex-col gap-4">
               <div>
-                <label className="block mb-1 font-medium">Book Name</label>
+                <label className="block mb-1 font-medium text-slate-900 dark:text-slate-100">Book Name</label>
                 <input
                   type="text"
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full border rounded px-3 py-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100"
                   value={newBookName}
                   onChange={e => setNewBookName(e.target.value)}
                   required
@@ -177,9 +177,9 @@ export default function BooksPage() {
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Category</label>
+                <label className="block mb-1 font-medium text-slate-900 dark:text-slate-100">Category</label>
                 <select
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full border rounded px-3 py-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100"
                   value={newBookCategory}
                   onChange={e => setNewBookCategory(e.target.value)}
                   required
@@ -224,7 +224,7 @@ export default function BooksPage() {
                   Year 2 Amazon <ExternalLink size={14} />
                 </a>
               </div>
-              {error && <div className="text-red-600">{error}</div>}
+              {error && <div className="text-red-600 dark:text-red-400">{error}</div>}
               <div className="flex justify-end gap-2">
                 <button
                   type="button"

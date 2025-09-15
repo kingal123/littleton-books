@@ -9,7 +9,7 @@ import { recentSalesData, topProducts } from "@/constants";
 
 import { Footer } from "@/layouts/footer";
 
-import { CreditCard, Bus, PencilLine, Star, Trash, TrendingUp, Users, LibraryBig, Check, X as XIcon } from "lucide-react";
+import { CreditCard, Bus, PencilLine, Star, Trash, TrendingUp, Users, LibraryBig, Check, X as XIcon, BookCheck, BookPlus } from "lucide-react";
 
 const MONTHS = [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -27,6 +27,10 @@ export default function DashboardPage() {
     const [receptionCount, setReceptionCount] = useState(null);
     const [year1Count, setYear1Count] = useState(null);
     const [year2Count, setYear2Count] = useState(null);
+    const [showReceived, setShowReceived] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [deliveredCount, setDeliveredCount] = useState(1);
+    const [status, setStatus] = useState("");
 
     useEffect(() => {
         async function fetchBookCount() {
@@ -134,10 +138,94 @@ export default function DashboardPage() {
         </span>
     );
 
+    const handleSendEmail = async (e) => {
+        e.preventDefault();
+        setStatus("Sending...");
+        setShowPopup(false);
+        try {
+            const MAILERSEND_API_KEY = "mlsn.07d1c12c6838555a8e689721fdbc41e24ace4dfe2f6bfc1fe2b97cef6636c47a";
+            const recipient = "alex.gallagher@me.com";
+
+            const response = await fetch("https://api.mailersend.com/v1/email", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${MAILERSEND_API_KEY}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    from: { email: "books@littletonhsa.co.uk", name: "Dashboard" },
+                    to: [{ email: recipient, name: "Alex Gallagher" }],
+                    subject: "New Order Received",
+                    text: `A new order has been received.\n\nBooks delivered: ${deliveredCount}`,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                setStatus(`Error: ${errorData.message || response.statusText}`);
+            } else {
+                setStatus("Email sent successfully!");
+            }
+        } catch (err) {
+            setStatus("Network or API error.");
+        }
+        setDeliveredCount(1);
+    };
+
     return (
         <div className="flex flex-col gap-y-4">
-            <h1 className="title">Dashboard</h1>
-            {/* Change grid-cols-1 to grid-cols-2 for mobile */}
+            <div className="flex items-center justify-between mb-4">
+                <h1 className="title">Dashboard</h1>
+                <button
+                    className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-lg font-semibold text-slate-700 dark:text-slate-200 transition-colors"
+                    onClick={() => setShowPopup(true)}
+                    type="button"
+                >
+                    <BookPlus size={18} />
+                    New Order Received
+                </button>
+            </div>
+            {showPopup && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+                    <form
+                        className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 min-w-[320px] flex flex-col gap-4"
+                        onSubmit={handleSendEmail}
+                    >
+                        <h2 className="text-lg font-bold mb-2 text-slate-900 dark:text-slate-100">
+                            How many books have been delivered?
+                        </h2>
+                        <select
+                            className="border rounded px-3 py-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100"
+                            value={deliveredCount}
+                            onChange={e => setDeliveredCount(Number(e.target.value))}
+                            required
+                            autoFocus
+                        >
+                            {[...Array(10)].map((_, i) => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
+                        <div className="flex justify-end gap-2">
+                            <button
+                                type="button"
+                                className="px-4 py-2 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200"
+                                onClick={() => setShowPopup(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                className="px-4 py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700"
+                            >
+                                Send
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            )}
+            {status && (
+                <div className="mt-4 text-sm text-slate-700 dark:text-slate-200">{status}</div>
+            )}
             <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 <div className="card p-2 sm:p-4">
                     <div className="card-header">
@@ -386,8 +474,8 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </div>
+            {/* Optionally, add a popup/modal here if you want to handle Book Received action */}
             <Footer />
-            
         </div>
     );
 };
