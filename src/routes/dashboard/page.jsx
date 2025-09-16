@@ -1,5 +1,6 @@
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import SupabaseTable from "@/components/SupabaseTable";
 import { useTheme } from "@/hooks/use-theme";
@@ -232,7 +233,13 @@ export default function DashboardPage() {
                         <div className="w-fit rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <LibraryBig size={26} />
                         </div>
-                        <p className="card-title">Total Books</p>
+                        {/* Make Total Books a hyperlink */}
+                        <Link
+                            to="/books"
+                            className="card-title text-slate-900 dark:text-slate-100 hover:underline"
+                        >
+                            Total Books
+                        </Link>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">
@@ -283,7 +290,13 @@ export default function DashboardPage() {
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <CreditCard size={26} />
                         </div>
-                        <p className="card-title text-slate-900 dark:text-slate-100">Book Float</p>
+                        {/* Make Book Float a hyperlink */}
+                        <Link
+                            to="/inventory"
+                            className="card-title text-slate-900 dark:text-slate-100 hover:underline"
+                        >
+                            Book Float
+                        </Link>
                     </div>
                     <div className="card-body bg-slate-100 dark:bg-slate-950 flex flex-col gap-2">
                         {/* Table status list, two per line, evenly aligned */}
