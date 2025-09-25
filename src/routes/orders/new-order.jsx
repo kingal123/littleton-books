@@ -6,33 +6,31 @@ export default function NewOrderPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [deliveredCount, setDeliveredCount] = useState(1);
 
+  // Call the Supabase Edge Function to trigger Resend email with book count
   const handleSendEmail = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
     setShowPopup(false);
     try {
-      const MAILERSEND_API_KEY = "mlsn.07d1c12c6838555a8e689721fdbc41e24ace4dfe2f6bfc1fe2b97cef6636c47a";
-      const recipient = "alex.gallagher@me.com";
+      // Ensure deliveredCount is always a number
+      const bookCount = Number(deliveredCount);
 
-      const response = await fetch("https://api.mailersend.com/v1/email", {
+      const response = await fetch("https://lcdxpwjafmunhrurzmcz.supabase.co/functions/v1/smooth-function", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${MAILERSEND_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: { email: "books@littletonhsa.co.uk", name: "Dashboard" },
-          to: [{ email: recipient, name: "Alex Gallagher" }],
-          subject: "New Order Received",
-          text: `A new order has been received.\n\nBooks delivered: ${deliveredCount}`,
+          book: bookCount,
         }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        setStatus(`Error: ${errorData.message || response.statusText}`);
-      } else {
+      const result = await response.json();
+
+      if (response.ok && (result.status === "sent" || result.success)) {
         setStatus("Email sent successfully!");
+      } else {
+        setStatus(result.error || result.message || "Failed to send email.");
       }
     } catch (err) {
       setStatus("Network or API error.");
