@@ -1,5 +1,5 @@
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import SupabaseTable from "@/components/SupabaseTable";
@@ -32,6 +32,8 @@ export default function DashboardPage() {
     const [showPopup, setShowPopup] = useState(false);
     const [deliveredCount, setDeliveredCount] = useState(1);
     const [status, setStatus] = useState("");
+    const [showConfirm, setShowConfirm] = useState(false);
+    const confirmTimeout = useRef(null);
 
     useEffect(() => {
         async function fetchBookCount() {
@@ -160,11 +162,21 @@ export default function DashboardPage() {
 
             if (response.ok && (result.status === "sent" || result.success)) {
                 setStatus("Email sent successfully!");
+                setShowConfirm(true);
+                // Auto-hide confirmation after 3 seconds
+                if (confirmTimeout.current) clearTimeout(confirmTimeout.current);
+                confirmTimeout.current = setTimeout(() => setShowConfirm(false), 3000);
             } else {
                 setStatus(result.error || result.message || "Failed to send email.");
+                setShowConfirm(true);
+                if (confirmTimeout.current) clearTimeout(confirmTimeout.current);
+                confirmTimeout.current = setTimeout(() => setShowConfirm(false), 3000);
             }
         } catch (err) {
             setStatus("Network or API error.");
+            setShowConfirm(true);
+            if (confirmTimeout.current) clearTimeout(confirmTimeout.current);
+            confirmTimeout.current = setTimeout(() => setShowConfirm(false), 3000);
         }
         setDeliveredCount(1);
     };
@@ -220,8 +232,11 @@ export default function DashboardPage() {
                     </form>
                 </div>
             )}
-            {status && (
-                <div className="mt-4 text-sm text-slate-700 dark:text-slate-200">{status}</div>
+            {/* Popout confirmation */}
+            {showConfirm && (
+                <div className="fixed top-6 left-1/2 z-[100] -translate-x-1/2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-lg px-6 py-4 text-center text-slate-900 dark:text-slate-100 transition-all animate-fade-in">
+                    {status}
+                </div>
             )}
             <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 <div className="card p-2 sm:p-4">
@@ -492,3 +507,13 @@ export default function DashboardPage() {
 // Add this to your global CSS (e.g. index.css or tailwind.css) if not already present:
 // .card { transition: padding 0.2s; }
 // @media (max-width: 640px) { .card { padding: 0.5rem !important; } }
+
+/* Add this to your global CSS if you want a fade-in animation:
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-16px) scale(0.98);}
+  to { opacity: 1; transform: translateY(0) scale(1);}
+}
+.animate-fade-in {
+  animation: fade-in 0.3s;
+}
+*/
