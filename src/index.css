@@ -88,3 +88,41 @@
 .recharts-tooltip-item {
     @apply text-base font-medium !text-blue-500 dark:!text-blue-600;
 }
+
+/* Add this to your global CSS (e.g. src/index.css) */
+
+/* Remove iOS Safari white space at top and bottom */
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  background: #fff;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  /* Prevents bounce/white space on iOS Safari */
+  touch-action: manipulation;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Prevents extra space on iOS Safari */
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent viewport shifting on iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  html {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+  }
+  body {
+    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
+  }
+}
