@@ -131,13 +131,13 @@ export default function DashboardPage() {
 
     // Helper for icon
     const TableStatus = ({ count, label }) => (
-        <span className="flex items-center gap-2">
-            <span className="font-bold">{label}</span>
+        <span className="flex flex-col items-center gap-1">
             {count === 5 ? (
                 <Check className="text-green-600" size={20} />
             ) : (
                 <XIcon className="text-red-600" size={20} />
             )}
+            <span className="font-bold">{label}</span>
         </span>
     );
 
@@ -311,7 +311,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="card-body bg-slate-100 dark:bg-slate-950 flex flex-col gap-2">
                         {/* Table status list, two per line, evenly aligned */}
-                        <div className="mt-2 flex flex-col gap-2">
+                        <div className="mt-2 flex flex-col gap-2 text-xs sm:text-sm">
                             <div className="flex justify-between gap-8">
                                 <div className="flex-1 flex justify-center">
                                     <TableStatus count={preSchoolCount} label={
