@@ -429,8 +429,11 @@ export default function DashboardPage() {
                                         <td colSpan={4} className="text-center">No recent orders</td>
                                     </tr>
                                 ) : (
-                                    recentBooks.map((book) => (
-                                        <tr key={book.id}>
+                                    recentBooks.map((book, idx) => (
+                                        <tr
+                                            key={book.id}
+                                            className={idx !== recentBooks.length - 1 ? "border-b border-slate-200 dark:border-slate-700" : ""}
+                                        >
                                             <td className="text-left">{book.book_name}</td>
                                             <td className="text-left">{book.status}</td>
                                             <td className="text-left">{book.category}</td>
@@ -444,7 +447,7 @@ export default function DashboardPage() {
                                                             timeZone: "UTC",
                                                         })
                                                         .replace(/ /g, "")
-                                                        .replace(/([A-Za-z]{3})[a-z]*/, "$1") // Ensure month is 3 letters
+                                                        .replace(/([A-Za-z]{3})[a-z]*/, "$1")
                                                     : ""}
                                             </td>
                                         </tr>
