@@ -132,6 +132,7 @@ export const Header = ({ collapsed, setCollapsed }) => {
                                 timeZone: "UTC",
                               })
                               .replace(/ /g, "")
+                              .replace(/([A-Za-z]{3})[a-z]*/, "$1") // Ensure month is 3 letters
                           : ""}
                       </span>
                     </li>

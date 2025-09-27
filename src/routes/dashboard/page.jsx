@@ -434,7 +434,19 @@ export default function DashboardPage() {
                                             <td className="text-left">{book.book_name}</td>
                                             <td className="text-left">{book.status}</td>
                                             <td className="text-left">{book.category}</td>
-                                            <td className="text-left">{book.created_at ? new Date(book.created_at).toLocaleString() : ""}</td>
+                                            <td className="text-left">
+                                                {book.created_at
+                                                    ? new Date(book.created_at)
+                                                        .toLocaleDateString("en-GB", {
+                                                            day: "2-digit",
+                                                            month: "short",
+                                                            year: "2-digit",
+                                                            timeZone: "UTC",
+                                                        })
+                                                        .replace(/ /g, "")
+                                                        .replace(/([A-Za-z]{3})[a-z]*/, "$1") // Ensure month is 3 letters
+                                                    : ""}
+                                            </td>
                                         </tr>
                                     ))
                                 )}
