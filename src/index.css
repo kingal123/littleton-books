@@ -96,54 +96,10 @@ html,
 body {
   height: 100%;
   min-height: 100vh;
-  background: #fff;
-  overscroll-behavior-y: none;
-  overscroll-behavior-x: none;
-  /* Prevents bounce/white space on iOS Safari */
-  touch-action: manipulation;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* Prevents extra space on iOS Safari */
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Prevent viewport shifting on iOS Safari */
-@supports (-webkit-touch-callout: none) {
-  html {
-    height: -webkit-fill-available;
-    min-height: -webkit-fill-available;
-  }
-  body {
-    min-height: -webkit-fill-available;
-    height: -webkit-fill-available;
-  }
-}
-
-/* Ensure large viewport and fill available space on iOS Safari */
-html {
-  height: 100%;
-  min-height: 100vh;
-  width: 100vw;
-  background: #fff;
-}
-
-body {
-  min-height: 100vh;
-  height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
   background: #fff;
 }
 
@@ -152,11 +108,9 @@ body {
   html {
     height: -webkit-fill-available;
     min-height: -webkit-fill-available;
-    width: 100vw;
   }
   body {
     min-height: -webkit-fill-available;
     height: -webkit-fill-available;
-    width: 100vw;
   }
 }
