@@ -126,3 +126,37 @@ body {
     height: -webkit-fill-available;
   }
 }
+
+/* Ensure large viewport and fill available space on iOS Safari */
+html {
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
+  background: #fff;
+}
+
+body {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+}
+
+/* iOS Safari: use large viewport and fill available space */
+@supports (-webkit-touch-callout: none) {
+  html {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+    width: 100vw;
+  }
+  body {
+    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
+    width: 100vw;
+  }
+}
