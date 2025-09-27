@@ -197,10 +197,10 @@ export default function DashboardPage() {
             {showPopup && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
                     <form
-                        className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 min-w-[320px] flex flex-col gap-4"
+                        className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 min-w-[320px] flex flex-col gap-4 text-xs sm:text-base"
                         onSubmit={handleSendEmail}
                     >
-                        <h2 className="text-lg font-bold mb-2 text-slate-900 dark:text-slate-100">
+                        <h2 className="text-base sm:text-lg font-bold mb-2 text-slate-900 dark:text-slate-100">
                             How many books have been delivered?
                         </h2>
                         <select
