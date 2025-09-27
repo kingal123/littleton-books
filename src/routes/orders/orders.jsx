@@ -50,7 +50,7 @@ export default function OrdersPage() {
     setMoving(true);
     setError("");
     setSuccess("");
-    const row = rows.find(r => r.id === selectedRow);
+    const row = rows.find(r => `${r._table}-${r.id}` === selectedRow);
     if (!row) {
       setError("Please select a book to move.");
       setMoving(false);
@@ -116,7 +116,7 @@ export default function OrdersPage() {
                 >
                   <option value="">Select a book</option>
                   {rows.map(row => (
-                    <option key={row._table + "-" + row.id} value={row.id}>
+                    <option key={row._table + "-" + row.id} value={row._table + "-" + row.id}>
                       {row.book_name} ({row._category})
                     </option>
                   ))}
