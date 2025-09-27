@@ -346,10 +346,7 @@ export default function DashboardPage() {
                         <p className="card-title">Overview</p>
                     </div>
                     <div className="card-body p-0">
-                        <ResponsiveContainer
-                            width="100%"
-                            height={300}
-                        >
+                        <ResponsiveContainer width="100%" height={300}>
                             <AreaChart
                                 data={overviewData}
                                 margin={{
@@ -382,13 +379,14 @@ export default function DashboardPage() {
                                 <Tooltip
                                     cursor={false}
                                     formatter={(value) => `${value}`}
+                                    contentStyle={{ fontSize: "0.75rem" }} // text-xs
                                 />
-
                                 <XAxis
                                     dataKey="name"
                                     strokeWidth={0}
                                     stroke={theme === "light" ? "#475569" : "#94a3b8"}
                                     tickMargin={6}
+                                    tick={{ fontSize: "0.75rem" }} // text-xs
                                 />
                                 <YAxis
                                     dataKey="total"
@@ -396,8 +394,8 @@ export default function DashboardPage() {
                                     stroke={theme === "light" ? "#475569" : "#94a3b8"}
                                     tickFormatter={(value) => `${value}`}
                                     tickMargin={6}
+                                    tick={{ fontSize: "0.75rem" }} // text-xs
                                 />
-
                                 <Area
                                     type="monotone"
                                     dataKey="total"
