@@ -186,7 +186,7 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between mb-4">
                 <h1 className="title">Dashboard</h1>
                 <button
-                    className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-lg font-semibold text-slate-700 dark:text-slate-200 transition-colors"
+                    className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-lg font-semibold text-slate-700 dark:text-slate-200 transition-colors text-xs sm:text-base"
                     onClick={() => setShowPopup(true)}
                     type="button"
                 >
@@ -247,7 +247,7 @@ export default function DashboardPage() {
                         {/* Make Total Books a hyperlink */}
                         <Link
                             to="/books"
-                            className="card-title text-slate-900 dark:text-slate-100 hover:underline"
+                            className="card-title text-slate-900 dark:text-slate-100 hover:underline text-xs sm:text-base"
                         >
                             Total Books
                         </Link>
@@ -256,7 +256,7 @@ export default function DashboardPage() {
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">
                             {bookCount !== null ? bookCount : "…"}
                         </p>
-                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
+                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600 text-xs sm:text-base">
                             <TrendingUp size={18} />
                             2%
                         </span>
@@ -267,13 +267,13 @@ export default function DashboardPage() {
                         <div className="w-fit rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <Bus size={26} />
                         </div>
-                        <p className="card-title">Books On Bus</p>
+                        <p className="card-title text-xs sm:text-base">Books On Bus</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">
                             {onBusCount !== null ? onBusCount : "…"}
                         </p>
-                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
+                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600 text-xs sm:text-base">
                             <TrendingUp size={18} />
                             5%
                         </span>
@@ -284,13 +284,13 @@ export default function DashboardPage() {
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <Star size={26} />
                         </div>
-                        <p className="card-title">New Books</p>
+                        <p className="card-title text-xs sm:text-base">New Books</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">
                             {newCount !== null ? newCount : "…"}
                         </p>
-                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
+                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600 text-xs sm:text-base">
                             <TrendingUp size={18} />
                             15%
                         </span>
@@ -304,7 +304,7 @@ export default function DashboardPage() {
                         {/* Make Book Float a hyperlink */}
                         <Link
                             to="/inventory"
-                            className="card-title text-slate-900 dark:text-slate-100 hover:underline"
+                            className="card-title text-slate-900 dark:text-slate-100 hover:underline text-xs sm:text-base"
                         >
                             Book Float
                         </Link>
