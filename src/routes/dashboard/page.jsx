@@ -414,7 +414,7 @@ export default function DashboardPage() {
                         <p className="card-title">Latest Books</p>
                     </div>
                     <div className="card-body h-[300px] overflow-auto p-0">
-                        <table className="table">
+                        <table className="table text-xs sm:text-sm">
                             <thead>
                                 <tr>
                                     <th className="text-left">Book</th>
