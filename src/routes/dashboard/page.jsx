@@ -417,10 +417,10 @@ export default function DashboardPage() {
                         <table className="table text-xs sm:text-sm">
                             <thead>
                                 <tr>
-                                    <th className="text-left px-[2px] sm:px-4">Book</th>
-                                    <th className="text-left px-[2px] sm:px-4">Status</th>
-                                    <th className="text-left px-[2px] sm:px-4">Category</th>
-                                    <th className="text-left px-[2px] sm:px-4">Created</th>
+                                    <th className="text-left px-2 sm:px-6">Book</th>
+                                    <th className="text-left px-2 sm:px-6">Status</th>
+                                    <th className="text-left px-2 sm:px-6">Category</th>
+                                    <th className="text-left px-2 sm:px-6">Created</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -434,10 +434,10 @@ export default function DashboardPage() {
                                             key={book.id}
                                             className={idx !== recentBooks.length - 1 ? "border-b border-slate-200 dark:border-slate-700" : ""}
                                         >
-                                            <td className="text-left px-[2px] sm:px-4">{book.book_name}</td>
-                                            <td className="text-left px-[2px] sm:px-4">{book.status}</td>
-                                            <td className="text-left px-[2px] sm:px-4">{book.category}</td>
-                                            <td className="text-left px-[2px] sm:px-4">
+                                            <td className="text-left px-2 sm:px-6">{book.book_name}</td>
+                                            <td className="text-left px-2 sm:px-6">{book.status}</td>
+                                            <td className="text-left px-2 sm:px-6">{book.category}</td>
+                                            <td className="text-left px-2 sm:px-6">
                                                 {book.created_at
                                                     ? new Date(book.created_at)
                                                         .toLocaleDateString("en-GB", {
