@@ -123,7 +123,16 @@ export const Header = ({ collapsed, setCollapsed }) => {
                         {book.book_name}
                       </span>
                       <span className="text-xs text-slate-400">
-                        {book.created_at ? new Date(book.created_at).toLocaleString() : ""}
+                        {book.created_at
+                          ? new Date(book.created_at)
+                              .toLocaleDateString("en-GB", {
+                                day: "2-digit",
+                                month: "short",
+                                year: "2-digit",
+                                timeZone: "UTC",
+                              })
+                              .replace(/ /g, "")
+                          : ""}
                       </span>
                     </li>
                   ))}
