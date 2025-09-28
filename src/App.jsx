@@ -13,6 +13,7 @@ import Login from "@/pages/Login";  // ✅ Import Login
 import InventoryPage from "./routes/books/inventory";
 import NewOrderPage from "@/routes/orders/new-order"; // ✅ Import NewOrderPage
 import OrdersPage from "./routes/orders/orders";    // ✅ Import OrdersPage
+import HowToPage from "@/routes/howto"; // ✅ Import HowToPage
 
 function App() {
     const router = createBrowserRouter([
@@ -47,6 +48,7 @@ function App() {
                 { path: "reports", element: <ReportsPage /> },
                 { path: "user", element: <UserPage /> },
                 { path: "signup", element: <h1 className="title">Add User</h1> },
+                { path: "howto", element: <HowToPage /> }, // ✅ Add HowToPage route
             ],
         },
     ]);

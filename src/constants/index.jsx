@@ -1,4 +1,4 @@
-import { ChartColumn, Home, NotepadText, Package, PackagePlus, History, Settings, UserCheck, UserPlus, Users, Book, Library, LibraryBig, BookCheck, BookPlus, } from "lucide-react";
+import { ChartColumn, Home, NotepadText, Package, PackagePlus, History, Settings, UserCheck, UserPlus, Users, Book, Library, LibraryBig, BookCheck, BookPlus, HelpCircle, } from "lucide-react";
 
 import ProfileImage from "@/assets/profile-image.jpg";
 import ProductImage from "@/assets/product-image.jpg";
@@ -55,15 +55,20 @@ export const navbarLinks = [
         ],
     },
     {
-        title: "Admin",
-        links: [
-            {
-                label: "Add User",
-                icon: UserPlus,
-                path: "/user",
-            },
-        ],
-    },
+    title: "Admin",
+    links: [
+        {
+            label: "Add User",
+            icon: UserPlus,
+            path: "/user",
+        },
+        {
+            label: "How To",
+            icon: HelpCircle,
+            path: "/howto",
+        },
+    ],
+},
 ];
 
 export const overviewData = [
