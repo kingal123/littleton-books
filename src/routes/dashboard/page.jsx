@@ -343,7 +343,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
                 <div className="card col-span-1 md:col-span-2 lg:col-span-4">
                     <div className="card-header">
-                        <p className="card-title">Overview</p>
+                        <p className="card-title">Yearly Overview</p>
                     </div>
                     <div className="card-body p-0">
                         <ResponsiveContainer width="100%" height={300}>
@@ -395,6 +395,13 @@ export default function DashboardPage() {
                                     tickFormatter={(value) => `${value}`}
                                     tickMargin={6}
                                     tick={{ fontSize: "0.75rem" }} // text-xs
+                                    label={{
+                                        value: "Books Added",
+                                        angle: -90,
+                                        position: "insideLeft",
+                                        offset: 10,
+                                        style: { textAnchor: "middle", fontSize: "0.75rem", fill: theme === "light" ? "#475569" : "#94a3b8" }
+                                    }}
                                 />
                                 <Area
                                     type="monotone"
